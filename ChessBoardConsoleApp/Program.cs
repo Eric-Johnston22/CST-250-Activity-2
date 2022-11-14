@@ -35,26 +35,35 @@ namespace ChessBoardConsoleApp
             // print the board to the console. use "X" for current location, "+" for legal move, and "." for empty square
             for (int i = 0; i < myBoard.Size; i++)
             {
+                for (int k = 0; k < myBoard.Size; k++)
+                {
+                    Console.Write("+---");
+                }
+                Console.Write("+");
+                Console.WriteLine();
                 for (int j = 0; j < myBoard.Size; j++)
                 {
+                    Console.Write("| ");
                     if (myBoard.theGrid[i, j].CurrentlyOccupied)
                     {
-                        Console.Write("X");
+                        Console.Write("X ");
                     }
                     else if (myBoard.theGrid[i, j].LegalNextMove)
                     {
-                        Console.Write("+");
+                        Console.Write("+ ");
                     }
                     else
                     {
-                        Console.Write(".");
+                        Console.Write(". ");
                     }
                 }
+                Console.Write("|");
                 Console.WriteLine();
             }
-            Console.WriteLine("================================");
+            Console.WriteLine("=================================");
         }
 
+        // Select which piece to place on the board
         static public string selectPiece()
         {
             Console.WriteLine("Which piece would you let to select? (King, Queen, Bishop, Rook, Knight)");
@@ -106,6 +115,9 @@ namespace ChessBoardConsoleApp
                     valid = true;
                 }
             } while (!valid);
+
+            // reset flag
+            valid = false;
 
             Console.Out.Write("enter your current column number ");
             do
